@@ -44,9 +44,9 @@ import java.util.*;
  */
 public class Demo {
     //APP KEY
-    private final static String APP_KEY = "23408262";
+    private final static String APP_KEY = "234008262";
     // APP密钥
-    private final static String APP_SECRET = "abd2f66288792669548bb84ba0672b24";
+    private final static String APP_SECRET = "abd2f66288792689548bb84ba0672b24";
     //API域名
     private final static String HOST = "dm-51.data.aliyun.com";
     //自定义参与签名Header前缀（可选,默认只有"X-Ca-"开头的参与到Header签名）
