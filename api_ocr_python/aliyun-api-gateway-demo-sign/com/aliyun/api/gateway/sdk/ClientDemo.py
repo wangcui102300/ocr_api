@@ -1,7 +1,7 @@
 #coding=utf8
 import os,sys
 reload(sys)
-sys.path.append('/home/cuiyou.wc/api_ocr_python/aliyun-api-gateway-demo-sign/')
+sys.path.append('/home/wangwang.ww/api_ocr_python/aliyun-api-gateway-demo-sign/')
 from com.aliyun.api.gateway.sdk import client
 from com.aliyun.api.gateway.sdk.http import request
 from com.aliyun.api.gateway.sdk.common import constant
@@ -30,12 +30,12 @@ if __name__ == "__main__":
     host = "http://dm-51.data.aliyun.com"
     url = "/rest/160601/ocr/ocr_idcard.json"
 
-    cli = client.DefaultClient(app_key="23408262", app_secret="abd2f66288792669548bb84ba0672b24")
+    cli = client.DefaultClient(app_key="23400262", app_secret="abd2f6ii88792669548bb84ba0672b24")
 
     req_post = request.Request(host=host, protocol=constant.HTTPS, url=url, method="POST", time_out=30000)
 
     config_str = '{\"side\":\"face\"}'
-    image = '/home/cuiyou.wc/api_ocr_python/aliyun-api-gateway-demo-sign/com/aliyun/api/gateway/sdk/13462.jpg'
+    image = '/home/wangwang.ww/api_ocr_python/aliyun-api-gateway-demo-sign/com/aliyun/api/gateway/sdk/13462.jpg'
     with open(image, 'rb') as infile:
         s = infile.read()
         img_base64 = base64.b64encode(s)
