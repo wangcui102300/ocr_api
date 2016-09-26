@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Aliyun CloudApi Android Sdk</string>
+    <string name="get_button">Send Http Get Request</string>
+    <string name="post_form_button">Send Http Post form Request</string>
+    <string name="post_bytes_button">Send Http Post bytes Request</string>
+    <string name="put_bytes_button">Send Http Put bytes Request</string>
+    <string name="delete_button">Send Http DELETE Request</string>
+</resources>
