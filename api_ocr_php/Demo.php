@@ -176,7 +176,8 @@ class Demo
 		$response = HttpClient::execute($request);
         //echo mb_detect_encoding($response,'GBK,GB2312,UTF-8');
 		//print_r($response);
-        var_dump($response);
+        //var_dump($response);
+		print_r($response->getBody());
 	}
 
 
