@@ -44,9 +44,11 @@ import java.util.*;
  */
 public class Demo {
     //APP KEY
-    private final static String APP_KEY = "234008262";
+    private final static String APP_KEY = "23415710";
     // APP密钥
-    private final static String APP_SECRET = "abd2f66288792689548bb84ba0672b24";
+    private final static String APP_SECRET = "edf8a365c2d17a342188fc670f3d1cg";
+    //测试图片位置
+    private final static String basePath = "C:\\Users\\cuiyou.wc\\Desktop\\imgage\\5467.jpg";
     //API域名
     private final static String HOST = "dm-51.data.aliyun.com";
     //自定义参与签名Header前缀（可选,默认只有"X-Ca-"开头的参与到Header签名）
@@ -271,6 +273,11 @@ public class Demo {
         }
         sb.append(readStreamAsStr(response.getEntity().getContent())).append(Constants.LF);
         System.out.println("The response is:" + sb.toString());
+
+        //get the response body
+        /*StringBuilder sbBody = new StringBuilder();
+        sbBody.append(readStreamAsStr(response.getEntity().getContent())).append(Constants.LF);
+        System.out.println("The response body is:" + sbBody.toString());*/
     }
 
     /**
@@ -461,11 +468,13 @@ public class Demo {
 
     @Test
     public void test_id_card()throws Exception{
-        String basePath = "C:\\Users\\cuiyou.wc\\Desktop\\imgage\\5467.jpg";
         String base64Str = imgToBase64(basePath);
+        int num = base64Str.length();
+        System.out.println("The size after encode is:" + num);
         String body ="{\"inputs\":[{\"image\":{\"dataType\":50,\"dataValue\":" + "\"" + base64Str + "\"" + "}," +
-                "\"configure\":{\"dataType\":50,\"dataValue\":\"{ \\\"side\\\": \\\"face\\\" }\"}}]}";
+               "\"configure\":{\"dataType\":50,\"dataValue\":\"{ \\\"side\\\": \\\"face\\\" }\"}}]}";
         HttpsPostString(body);
+
     }
 
 }
