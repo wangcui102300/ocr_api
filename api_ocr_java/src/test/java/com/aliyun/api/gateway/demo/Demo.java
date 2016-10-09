@@ -43,9 +43,13 @@ import java.util.*;
  * 请替换APP_KEY,APP_SECRET,HOST,CUSTOM_HEADERS_TO_SIGN_PREFIX为真实配置
  */
 public class Demo {
-    //APP KEY
+	/**
+     *  Api绑定的的AppKey，可以在“阿里云官网”->"API网关"->"应用管理"->"应用详情"查看
+     */
     private final static String APP_KEY = "23415710";
-    // APP密钥
+	/**
+     *  Api绑定的的AppSecret，用来做传输数据签名使用，可以在“阿里云官网”->"API网关"->"应用管理"->"应用详情"查看
+     */
     private final static String APP_SECRET = "edf8a365c2d17a342188fc670f3d1cg";
     //测试图片位置
     private final static String basePath = "C:\\Users\\cuiyou.wc\\Desktop\\imgage\\5467.jpg";
