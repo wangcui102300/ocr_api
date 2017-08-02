@@ -7,7 +7,7 @@ import com.aliyun.api.gateway.demo.constant.ContentType;
 import com.aliyun.api.gateway.demo.constant.HttpHeader;
 import com.aliyun.api.gateway.demo.constant.HttpSchema;
 import com.aliyun.api.gateway.demo.enums.Method;
-import org.apache.http.Header;
+import com.google.gson.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import sun.misc.BASE64Decoder;
@@ -100,18 +100,40 @@ public class CommonUtil {
      * @throws java.io.IOException
      */
     private void print(HttpResponse response) throws IOException {
-        StringBuilder sb = new StringBuilder();
+        /*StringBuilder sb = new StringBuilder();
         sb.append(response.getStatusLine().getStatusCode()).append(Constants.LF);
         for (Header header : response.getAllHeaders()) {
             sb.append(MessageDigestUtil.iso88591ToUtf8(header.getValue())).append(Constants.LF);
         }
         sb.append(readStreamAsStr(response.getEntity().getContent())).append(Constants.LF);
-        System.out.println("The response is:" + sb.toString());
+        System.out.println("The response is:" + sb.toString());*/
 
         //get the response body
-        /*StringBuilder sbBody = new StringBuilder();
+        StringBuilder sbBody = new StringBuilder();
         sbBody.append(readStreamAsStr(response.getEntity().getContent())).append(Constants.LF);
-        System.out.println("The response body is:" + sbBody.toString());*/
+        String resultBody = new String(sbBody.toString().getBytes("UTF-8"),"UTF-8");
+        //System.out.println("The response body is:" + sbBody.toString());
+        //System.out.println("The response body is:" + resultBody);
+        JsonParser parser = new JsonParser();
+        Gson gson = new Gson();
+        try{
+            JsonObject json = (JsonObject) parser.parse(resultBody);
+            if(json.has("outputs")){
+                JsonObject jsonObject = json.get("outputs").getAsJsonArray().get(0).getAsJsonObject();
+                String outputValueStr = jsonObject.get("outputValue").getAsJsonObject().get("dataValue").getAsString();
+                JsonObject outputValue = (JsonObject) parser.parse(outputValueStr);
+                System.out.println("address: " + outputValue.get("address").getAsString()
+                 + "\n" + "birth: " + outputValue.get("birth").getAsString()
+                 + "\n" + "name: " + outputValue.get("name").getAsString()
+                 + "\n" + "nationality: " + outputValue.get("nationality").getAsString()
+                 + "\n" + "num: " + outputValue.get("num").getAsString()
+                 + "\n" + "sex: " + outputValue.get("sex").getAsString());
+            }
+        }catch (JsonIOException e){
+            e.printStackTrace();
+        }catch (JsonSyntaxException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -241,6 +263,7 @@ public class CommonUtil {
      * @throws Exception
      */
     public void sendPostRequestWithBody()throws Exception{
+        long t1 = System.currentTimeMillis();
         String base64Str = imgToBase64(this.image_path);
         //System.out.println(base64Str);
         int num = base64Str.length();
@@ -248,6 +271,7 @@ public class CommonUtil {
         String body ="{\"inputs\":[{\"image\":{\"dataType\":50,\"dataValue\":" + "\"" + base64Str + "\"" + "}," +
                 "\"configure\":{\"dataType\":50,\"dataValue\":\"{ \\\"side\\\": \\\"face\\\" }\"}}]}";
         HttpsPostString(body);
+        System.out.println("The cost time is:" + (System.currentTimeMillis() - t1)/1000 + " s");
     }
 
     /**

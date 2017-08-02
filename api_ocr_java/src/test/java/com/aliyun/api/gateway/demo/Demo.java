@@ -30,11 +30,11 @@ import java.util.List;
  */
 public class Demo {
     //APP KEY
-    private final static String APP_KEY = "234082620";
+    private final static String APP_KEY = "23408262";
     // APP密钥
-    private final static String APP_SECRET = "abd2f66288792669548bb84ba0672b204";
+    private final static String APP_SECRET = "abd2f662887926548bb84ba0672b24";
     //测试图片位置
-    private final static String basePath = "C:\\Users\\cuiyou.wc\\Desktop\\imgage\\17467.jpg";
+    private final static String basePath = "C:\\Users\\cuiyo\\Desktop\\imgage\\17467.jpg";
     //API域名
     private final static String HOST = "dm-51.data.aliyun.com";
     //url
