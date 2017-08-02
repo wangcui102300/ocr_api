@@ -31,8 +31,8 @@ $demo->doPostString();
 */
 class Demo
 {
-	private static $appKey = "2348620";
-    private static $appSecret = "abd2f68288792669548bb84ba0672b24";
+    private static $appKey = "23408262";
+    private static $appSecret = "abd2f66288792548bb84ba0672b24";
 	//协议(http或https)://域名:端口，注意必须有http://或https://
     //private static $host = "http://test.alicloudapi.com";
     private static $host = "https://dm-51.data.aliyun.com";
@@ -138,7 +138,7 @@ class Demo
 		//$path = "/poststring";
         $path = "/rest/160601/ocr/ocr_idcard.json";
 		$request = new HttpRequest($this::$host, $path, HttpMethod::POST, $this::$appKey, $this::$appSecret);
-        $base64_img_string = $this->imgToBase64("C:\Users\cuiyou.wc\Desktop\imgage\est.jpg");
+        $base64_img_string = $this->imgToBase64("/home/cuiyou.wc/idcardDemo/idcard45.jpg");
 		//传入内容是json格式的字符串
 		//$bodyContent = "{\"inputs\": [{\"image\": {\"dataType\": 50,\"dataValue\": \"base64_image_string\"},\"configure\": {\"dataType\": 50,\"dataValue\": \"{\\\"side\\\":\\\"face\\\"}\"}}]}";
         
@@ -174,12 +174,14 @@ class Demo
 		//$request->setSignHeader("b-header2");
 
 		$response = HttpClient::execute($request);
+        //print_r($response->getBody());
         //echo mb_detect_encoding($response,'GBK,GB2312,UTF-8');
-		//print_r($response);
+        $res_json = json_decode($response->getBody(),TRUE);
+        $output_value = json_decode($res_json['outputs'][0]['outputValue']['dataValue']);
+        print_r($output_value->address);
         //var_dump($response);
-		print_r($response->getBody());
+        //var_dump($response->getBody());
 	}
-
 
 	/**
 	*method=POST且是非表单提交，请求示例
